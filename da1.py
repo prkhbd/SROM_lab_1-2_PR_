@@ -224,7 +224,7 @@ def add_mod(a,b,mod):
     return divmod_long(add_long(a,b), mod)[1]
 
 def sub_mod(a,b,mod):
-    return divmod_long(sub_long(a,b), mod)[1] if compare_long(a,b)>=0 else sub_long(a,b)
+    return divmod_long(sub_long(a,b), mod)[1] if compare_long(a,b)>=0 else divmod_long(add_long(a, sub_long(mod,b)), mod)[1]
 
 def mul_mod(a,b,mod):
     mu = mu_eval(mod)
@@ -235,7 +235,7 @@ def sq_mod(a,mod):
 
 def pow_mod(a,b,mod):
     a_mod = divmod_long(a,mod)[1]
-    b_mod = divmod_long(b,mod)[1]
+    b_mod = b
     res = [1]
     mu = mu_eval(mod)
     for i in range(bit_length(b_mod)):
